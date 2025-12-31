@@ -3,22 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Awesome Simple Page</title>
+    <title>Robotics Engineer | Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Simple Website!</h1>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">RE</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <p>This is a very basic web page created by me. I'm learning how to make websites!</p>
-        <img src="https://via.placeholder.com/300" alt="A placeholder image">
-        <p>Feel free to look around (though there's not much to see yet!).</p>
-    </main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="particleCanvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glitch" data-text="Robotics Engineer">Robotics Engineer</h1>
+                <p class="subtitle">Building the Future, One Robot at a Time</p>
+                <p class="description">Passionate about robotics, software development, and creating innovative solutions</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="floating-robot">
+                <div class="robot-container">
+                    <div class="robot">
+                        <div class="robot-head">
+                            <div class="robot-eye left"></div>
+                            <div class="robot-eye right"></div>
+                        </div>
+                        <div class="robot-body">
+                            <div class="robot-arm left"></div>
+                            <div class="robot-core"></div>
+                            <div class="robot-arm right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 My Simple Website. All rights reserved.</p>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="floating-shapes">
+                            <div class="shape shape-1"></div>
+                            <div class="shape shape-2"></div>
+                            <div class="shape shape-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Hello! I'm a Robotics Engineer</h3>
+                    <p>I'm passionate about building software and creating innovative robotic solutions. Currently working at <strong>ACE Solutions</strong> in Hsinchu, Taiwan, where I combine my love for robotics and software development to solve complex challenges.</p>
+                    <p>My journey in robotics has been driven by curiosity and a desire to push the boundaries of what's possible. I believe in writing clean, efficient code and building systems that make a real impact.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="100">0</div>
+                            <div class="stat-label">Robots Built</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Capabilities</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="robotics">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Robotics</h3>
+                    <p>Robot programming, kinematics, control systems</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="95"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="software">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Software Development</h3>
+                    <p>Python, C++, ROS, Web Development</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="ai">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Computer vision, neural networks, deep learning</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="embedded">
+                    <div class="skill-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Embedded Systems</h3>
+                    <p>Microcontrollers, sensors, IoT devices</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="88"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="mechanical">
+                    <div class="skill-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Mechanical Design</h3>
+                    <p>CAD, 3D modeling, prototyping</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="automation">
+                    <div class="skill-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Industrial Automation</h3>
+                    <p>PLC programming, SCADA systems</p>
+                    <div class="skill-level">
+                        <div class="skill-bar" data-level="82"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>ROS</span>
+                                <span>OpenCV</span>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Autonomous Navigation System</h3>
+                        <p>Advanced SLAM-based navigation system for mobile robots with real-time obstacle avoidance and path planning.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>C++</span>
+                                <span>Arduino</span>
+                                <span>IoT</span>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Smart Robotic Arm Controller</h3>
+                        <p>Precision control system for 6-DOF robotic arm with machine learning-based trajectory optimization.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>Computer Vision</span>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Object Recognition System</h3>
+                        <p>Real-time object detection and classification system using deep learning for industrial applications.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span>JavaScript</span>
+                                <span>React</span>
+                                <span>WebGL</span>
+                            </div>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>3D Robot Simulator</h3>
+                        <p>Interactive web-based 3D robot simulation platform for testing and visualization of robotic systems.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies">
+        <div class="container">
+            <h2 class="section-title">My Hobbies</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Coding Projects</h3>
+                    <p>Building side projects and exploring new technologies in my free time</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Reading Tech Blogs</h3>
+                    <p>Staying updated with latest trends in robotics and software development</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3>Hiking & Nature</h3>
+                    <p>Exploring Taiwan's beautiful mountains and nature trails</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gaming</h3>
+                    <p>Enjoying strategy games and puzzle-solving challenges</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Music</h3>
+                    <p>Listening to electronic and ambient music while coding</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Capturing moments and documenting my projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect!</h3>
+                    <p>I'm always open to discussing robotics projects, software development, or just having a chat about technology.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Hsinchu, Taiwan</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-building"></i>
+                            <span>ACE Solutions</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-link linkedin" id="linkedin-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/yourusername" target="_blank" class="social-link github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Robotics Engineer Portfolio. Built with passion and code.</p>
+            <p class="footer-note">Hosted on GitHub Pages</p>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
