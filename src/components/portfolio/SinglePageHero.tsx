@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
+import { assetPrefix } from '../../lib/basePath';
 
 export default function SinglePageHero() {
   return (
@@ -18,7 +19,7 @@ export default function SinglePageHero() {
                 }}
               >
                 <Image
-                  src="/portfolio/cover.jpg"
+                  src={`${assetPrefix}/portfolio/cover.jpg`}
                   alt="Jagmohan Meher portfolio cover photo"
                   width={1200}
                   height={675}
