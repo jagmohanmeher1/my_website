@@ -28,3 +28,10 @@ npx serve out
 ```
 
 Open `http://localhost:3000/my_website/` (port may vary; `serve` prints the URL).
+
+## If the workflow shows a red X
+
+1. Open **Actions** → click the failed run → see which job failed (**build** or **deploy**).
+2. **Settings** → **Actions** → **General** → **Workflow permissions** → choose **Read and write permissions** → Save. (Deploy steps need permission to publish Pages artifacts.)
+3. **Settings** → **Environments** → **github-pages** → remove extra **Required reviewers** / protection rules if deploy hangs or fails on approval.
+4. Common **build** failure (fixed in repo): `next/font/google` downloads fonts during `next build`; GitHub runners often cannot reach `fonts.googleapis.com` reliably. This project uses system fonts in CSS instead so CI does not need that network call.

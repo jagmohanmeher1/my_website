@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: radial-gradient(900px 520px at 15% -10%, rgba(29, 143, 232, 0.16), transparent 55%),
     radial-gradient(900px 520px at 85% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
     radial-gradient(900px 520px at 50% 120%, rgba(255, 0, 110, 0.08), transparent 55%),
