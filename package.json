@@ -14,15 +14,18 @@
     "@emotion/styled": "11.14.1",
     "@mui/icons-material": "6.5.0",
     "@mui/material": "6.5.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "next": "14.2.5",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@types/node": "20.19.37",
     "@types/react": "18.3.28",
     "@types/react-dom": "18.3.7",
+    "@types/three": "^0.184.1",
     "typescript": "5.9.3"
   }
 }
-

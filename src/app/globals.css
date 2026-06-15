@@ -14,247 +14,88 @@ html {
 
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: radial-gradient(900px 520px at 15% -10%, rgba(29, 143, 232, 0.16), transparent 55%),
-    radial-gradient(900px 520px at 85% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
-    radial-gradient(900px 520px at 50% 120%, rgba(255, 0, 110, 0.08), transparent 55%),
-    #F6F1E8;
+  background: #ffffff;
+  color: #18181b;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* F01 Home hero visuals */
-.heroRoot {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  padding-top: 84px; /* accounts for the top nav */
-  background: radial-gradient(1000px 600px at 20% 0%, rgba(0, 212, 255, 0.15), transparent 60%),
-    radial-gradient(900px 500px at 80% 10%, rgba(131, 56, 236, 0.16), transparent 55%),
-    #050810;
+/* Gradient text helper */
+.gradientText {
+  background: linear-gradient(120deg, #f97316, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-.heroCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.heroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px 64px;
-}
-
-.heroGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
-}
-
-@media (max-width: 900px) {
-  .heroGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.heroTitle {
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  line-height: 1.05;
-}
-
-.heroSubtitle {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.1rem;
-  margin-top: 12px;
-}
-
-.robotStage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 0;
-}
-
-.robotFrame {
-  width: 220px;
-  height: 280px;
-  perspective: 1000px;
-}
-
-.robot {
-  width: 200px;
-  height: 250px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 220ms ease;
-}
-
-/* CSS-only robot (inspired by your previous `index.html` / `style.css`) */
-.robotHead {
-  width: 110px;
-  height: 110px;
-  background: linear-gradient(135deg, #00d4ff, #8338ec);
-  border-radius: 22px;
-  margin: 0 auto;
-  position: relative;
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-}
-
-.robotEye {
-  width: 22px;
-  height: 22px;
-  background: #050810;
-  border-radius: 50%;
-  position: absolute;
-  top: 36px;
-  animation: robotBlink 3.2s infinite;
-}
-
-.robotEye.left {
-  left: 28px;
-}
-
-.robotEye.right {
-  right: 28px;
-  animation-delay: 0.35s;
-}
-
-@keyframes robotBlink {
-  0%,
-  92%,
-  100% {
-    transform: scaleY(1);
-  }
-  95% {
-    transform: scaleY(0.08);
-  }
-}
-
-.robotBody {
-  width: 130px;
-  height: 130px;
-  background: linear-gradient(135deg, #8338ec, #ff006e);
-  border-radius: 18px;
-  margin: 12px auto 0;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.robotCore {
-  width: 68px;
-  height: 68px;
-  border: 3px solid #00d4ff;
-  border-radius: 50%;
-  animation: robotPulse 2.2s infinite;
-}
-
-@keyframes robotPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.18);
-    opacity: 0.75;
-  }
-}
-
-.robotArm {
-  width: 36px;
-  height: 92px;
-  background: linear-gradient(135deg, #00d4ff, #8338ec);
-  border-radius: 15px;
-  position: absolute;
-  top: 34px;
-  transform-origin: top center;
-  animation: robotWave 2.2s infinite ease-in-out;
-}
-
-.robotArm.left {
-  left: -28px;
-}
-
-.robotArm.right {
-  right: -28px;
-  animation-delay: 1.1s;
-}
-
-@keyframes robotWave {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-18deg);
-  }
-  75% {
-    transform: rotate(18deg);
-  }
-}
-
-.robot--reduced .robotEye,
-.robot--reduced .robotCore,
-.robot--reduced .robotArm {
-  animation: none !important;
-}
-
+/* Fixed navbar */
 .topNavBackdrop {
-  background: rgba(246, 241, 232, 0.78);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(24, 24, 27, 0.07);
 }
 
-/* Single-page section helpers */
+/* Section helpers */
 .spSection {
-  padding: 84px 0;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .spSectionTitle {
-  font-weight: 900;
+  font-weight: 950;
 }
 
+/* Card */
 .spGlass {
-  background: rgba(255, 255, 255, 0.70);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(24, 24, 27, 0.08);
+  box-shadow: 0 1px 3px rgba(24, 24, 27, 0.04), 0 12px 32px rgba(24, 24, 27, 0.06);
 }
 
-.spGradientBorder {
-  position: relative;
-}
-
-.spGradientBorder::before {
-  content: '';
+/* Playful background blobs */
+.blob {
   position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(29, 143, 232, 0.55), rgba(139, 92, 246, 0.50), rgba(255, 0, 110, 0.28));
-  filter: blur(0px);
-  z-index: 0;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
   pointer-events: none;
+  z-index: 0;
 }
 
-.spGradientBorder > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Fixed navbar offset for anchor navigation */
+/* Anchor scroll offset */
 #about,
+#robots,
+#skills,
 #projects,
 #contact {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px;
 }
 
+/* Skill bar transition */
+.skillBarFill {
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Project card hover */
+.projectCard {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 48px rgba(249, 115, 22, 0.18) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
+}
+
+/* Grab cursor for interactive canvases */
+.robotCanvasInteractive {
+  cursor: grab;
+}
+.robotCanvasInteractive:active {
+  cursor: grabbing;
+}
