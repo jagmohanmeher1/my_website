@@ -13,11 +13,10 @@ interface Pose {
   gripperSpread: number;
 }
 
-// Each pose drives a visual narrative as the user scrolls
 const POSES: Pose[] = [
-  { baseY: 0,   shoulder: -20, elbow:  65, wrist: -35, gripperSpread: 0.1 }, // rest
-  { baseY: 25,  shoulder:  62, elbow: -28, wrist:  42, gripperSpread: 0.9 }, // wave
-  { baseY: -15, shoulder:  12, elbow:  22, wrist: -8,  gripperSpread: 1.0 }, // reach/point
+  { baseY: 0,   shoulder: -20, elbow:  65, wrist: -35, gripperSpread: 0.1  }, // rest
+  { baseY: 25,  shoulder:  62, elbow: -28, wrist:  42, gripperSpread: 0.9  }, // wave
+  { baseY: -15, shoulder:  12, elbow:  22, wrist: -8,  gripperSpread: 1.0  }, // reach
   { baseY:  5,  shoulder:  78, elbow: -98, wrist:  58, gripperSpread: 0.15 }, // pick
   { baseY:  0,  shoulder:  38, elbow: -12, wrist:  10, gripperSpread: 0.65 }, // present
 ];
@@ -46,41 +45,45 @@ export default function RobotArm3D({ scrollProgress }: Props) {
 
   const current = useRef<Pose>({ ...POSES[0] });
 
-  // Materials - created once
+  // Professional dark steel arm
   const matArm = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#1a2838'),
-    metalness: 0.88,
+    color: new THREE.Color('#1e293b'),
+    metalness: 0.85,
     roughness: 0.18,
   }), []);
 
-  const matJointCyan = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#00d4ff'),
-    metalness: 0.5,
-    roughness: 0.22,
-    emissive: new THREE.Color('#00d4ff'),
-    emissiveIntensity: 0.45,
+  // Engineering blue joints
+  const matJointBlue = useMemo(() => new THREE.MeshStandardMaterial({
+    color: new THREE.Color('#2563eb'),
+    metalness: 0.55,
+    roughness: 0.2,
+    emissive: new THREE.Color('#2563eb'),
+    emissiveIntensity: 0.15,
   }), []);
 
+  // Accent purple wrist joint
   const matJointPurple = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#8338ec'),
-    metalness: 0.5,
-    roughness: 0.25,
-    emissive: new THREE.Color('#8338ec'),
-    emissiveIntensity: 0.4,
+    color: new THREE.Color('#7c3aed'),
+    metalness: 0.55,
+    roughness: 0.22,
+    emissive: new THREE.Color('#7c3aed'),
+    emissiveIntensity: 0.12,
   }), []);
 
+  // Dark base
   const matBase = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#0d1b2a'),
+    color: new THREE.Color('#0f172a'),
     metalness: 0.92,
     roughness: 0.1,
   }), []);
 
-  const matFingerGlow = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#00d4ff'),
-    metalness: 0.4,
-    roughness: 0.3,
-    emissive: new THREE.Color('#00d4ff'),
-    emissiveIntensity: 0.6,
+  // Gripper fingers — slightly lighter steel
+  const matGripper = useMemo(() => new THREE.MeshStandardMaterial({
+    color: new THREE.Color('#2563eb'),
+    metalness: 0.7,
+    roughness: 0.22,
+    emissive: new THREE.Color('#2563eb'),
+    emissiveIntensity: 0.08,
   }), []);
 
   useFrame(({ clock }) => {
@@ -90,18 +93,16 @@ export default function RobotArm3D({ scrollProgress }: Props) {
     const seg = scroll * (POSES.length - 1);
     const idx = Math.min(Math.floor(seg), POSES.length - 2);
     const localT = seg - idx;
-
     const target = lerpPose(POSES[idx], POSES[idx + 1], localT);
 
-    // Subtle idle oscillation layered on top of scroll poses
-    const idleA = Math.sin(t * 0.55) * 1.8;
-    const idleB = Math.cos(t * 0.72) * 1.4;
+    const idleA = Math.sin(t * 0.55) * 1.6;
+    const idleB = Math.cos(t * 0.72) * 1.2;
 
     const spd = 0.038;
-    current.current.baseY         = MathUtils.lerp(current.current.baseY,         target.baseY + idleA * 0.25, spd);
+    current.current.baseY         = MathUtils.lerp(current.current.baseY,         target.baseY + idleA * 0.22, spd);
     current.current.shoulder      = MathUtils.lerp(current.current.shoulder,      target.shoulder + idleA,      spd);
     current.current.elbow         = MathUtils.lerp(current.current.elbow,         target.elbow + idleB,         spd);
-    current.current.wrist         = MathUtils.lerp(current.current.wrist,         target.wrist + idleA * 0.8,   spd);
+    current.current.wrist         = MathUtils.lerp(current.current.wrist,         target.wrist + idleA * 0.7,   spd);
     current.current.gripperSpread = MathUtils.lerp(current.current.gripperSpread, target.gripperSpread,          spd * 1.6);
 
     if (baseRotRef.current)
@@ -125,38 +126,38 @@ export default function RobotArm3D({ scrollProgress }: Props) {
         <cylinderGeometry args={[1.6, 1.9, 0.35, 32]} />
       </mesh>
 
-      {/* Cyan glow ring around base */}
-      <mesh material={matJointCyan} position={[0, 0.2, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.25, 0.065, 16, 64]} />
+      {/* Blue accent ring */}
+      <mesh material={matJointBlue} position={[0, 0.2, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1.25, 0.055, 16, 64]} />
       </mesh>
 
-      {/* Base rotation group (Y axis) */}
+      {/* Base rotation (Y) */}
       <group ref={baseRotRef} position={[0, 0.18, 0]}>
-        {/* Turret body */}
+        {/* Turret */}
         <mesh material={matArm} castShadow position={[0, 0.52, 0]}>
           <cylinderGeometry args={[0.58, 0.74, 1.0, 16]} />
         </mesh>
 
-        {/* Small LED ring on turret top */}
-        <mesh material={matJointCyan} position={[0, 1.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.45, 0.04, 8, 32]} />
+        {/* Turret top ring */}
+        <mesh material={matJointBlue} position={[0, 1.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.44, 0.038, 8, 32]} />
         </mesh>
 
-        {/* Shoulder joint (cyan sphere) */}
-        <mesh material={matJointCyan} castShadow position={[0, 1.15, 0]}>
+        {/* Shoulder joint */}
+        <mesh material={matJointBlue} castShadow position={[0, 1.15, 0]}>
           <sphereGeometry args={[0.52, 32, 32]} />
         </mesh>
 
-        {/* Shoulder group (Z-axis rotation) */}
+        {/* Shoulder rotation (Z) */}
         <group ref={shoulderRef} position={[0, 1.15, 0]}>
           {/* Upper arm */}
           <mesh material={matArm} castShadow position={[0, 1.45, 0]}>
             <cylinderGeometry args={[0.27, 0.38, 2.9, 16]} />
           </mesh>
 
-          {/* Cable guide strip on upper arm */}
+          {/* Cable guide */}
           <mesh material={matBase} castShadow position={[0.28, 1.45, 0]}>
-            <cylinderGeometry args={[0.06, 0.06, 2.4, 8]} />
+            <cylinderGeometry args={[0.055, 0.055, 2.4, 8]} />
           </mesh>
 
           {/* Elbow flange */}
@@ -164,21 +165,21 @@ export default function RobotArm3D({ scrollProgress }: Props) {
             <cylinderGeometry args={[0.48, 0.38, 0.2, 16]} />
           </mesh>
 
-          {/* Elbow joint (cyan sphere) */}
-          <mesh material={matJointCyan} castShadow position={[0, 3.08, 0]}>
+          {/* Elbow joint */}
+          <mesh material={matJointBlue} castShadow position={[0, 3.08, 0]}>
             <sphereGeometry args={[0.42, 32, 32]} />
           </mesh>
 
-          {/* Elbow group (Z-axis rotation) */}
+          {/* Elbow rotation (Z) */}
           <group ref={elbowRef} position={[0, 3.08, 0]}>
             {/* Forearm */}
             <mesh material={matArm} castShadow position={[0, 1.12, 0]}>
               <cylinderGeometry args={[0.21, 0.30, 2.24, 16]} />
             </mesh>
 
-            {/* Cable guide on forearm */}
+            {/* Forearm cable guide */}
             <mesh material={matBase} castShadow position={[0.22, 1.12, 0]}>
-              <cylinderGeometry args={[0.05, 0.05, 1.9, 8]} />
+              <cylinderGeometry args={[0.046, 0.046, 1.9, 8]} />
             </mesh>
 
             {/* Wrist flange */}
@@ -186,14 +187,14 @@ export default function RobotArm3D({ scrollProgress }: Props) {
               <cylinderGeometry args={[0.36, 0.27, 0.18, 16]} />
             </mesh>
 
-            {/* Wrist joint (purple sphere) */}
+            {/* Wrist joint (purple accent) */}
             <mesh material={matJointPurple} castShadow position={[0, 2.42, 0]}>
               <sphereGeometry args={[0.3, 32, 32]} />
             </mesh>
 
-            {/* Wrist group (Z-axis rotation) */}
+            {/* Wrist rotation (Z) */}
             <group ref={wristRef} position={[0, 2.42, 0]}>
-              {/* Wrist connector */}
+              {/* Wrist link */}
               <mesh material={matArm} castShadow position={[0, 0.3, 0]}>
                 <boxGeometry args={[0.52, 0.52, 0.4]} />
               </mesh>
@@ -203,24 +204,23 @@ export default function RobotArm3D({ scrollProgress }: Props) {
                 <boxGeometry args={[0.7, 0.26, 0.42]} />
               </mesh>
 
-              {/* Left finger group (translates for open/close) */}
+              {/* Left finger */}
               <group ref={fingerLRef} position={[-0.18, 0.7, 0]}>
-                <mesh material={matFingerGlow} castShadow position={[0, 0.38, 0]}>
+                <mesh material={matGripper} castShadow position={[0, 0.38, 0]}>
                   <boxGeometry args={[0.16, 0.55, 0.18]} />
                 </mesh>
-                {/* Finger tip glow */}
-                <mesh material={matJointCyan} position={[0, 0.68, 0]}>
-                  <sphereGeometry args={[0.07, 12, 12]} />
+                <mesh material={matJointBlue} position={[0, 0.68, 0]}>
+                  <sphereGeometry args={[0.065, 12, 12]} />
                 </mesh>
               </group>
 
-              {/* Right finger group */}
+              {/* Right finger */}
               <group ref={fingerRRef} position={[0.18, 0.7, 0]}>
-                <mesh material={matFingerGlow} castShadow position={[0, 0.38, 0]}>
+                <mesh material={matGripper} castShadow position={[0, 0.38, 0]}>
                   <boxGeometry args={[0.16, 0.55, 0.18]} />
                 </mesh>
-                <mesh material={matJointCyan} position={[0, 0.68, 0]}>
-                  <sphereGeometry args={[0.07, 12, 12]} />
+                <mesh material={matJointBlue} position={[0, 0.68, 0]}>
+                  <sphereGeometry args={[0.065, 12, 12]} />
                 </mesh>
               </group>
             </group>

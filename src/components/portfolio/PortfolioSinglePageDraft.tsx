@@ -10,9 +10,9 @@ function Footer() {
     <Box
       component="footer"
       sx={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid rgba(0,0,0,0.07)',
         py: 4,
-        mt: 4,
+        background: '#ffffff',
       }}
     >
       <Container maxWidth="lg">
@@ -25,18 +25,11 @@ function Footer() {
             gap: 2,
           }}
         >
-          <Typography
-            sx={{
-              fontWeight: 800,
-              background: 'linear-gradient(135deg, #00d4ff, #8338ec)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontSize: '1.1rem',
-            }}
-          >
-            Jagmohan Meher
+          <Typography sx={{ fontWeight: 900, color: '#111827', fontSize: '1rem' }}>
+            Jagmohan{' '}
+            <Box component="span" sx={{ color: '#2563eb' }}>Meher</Box>
           </Typography>
-          <Typography sx={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.82rem' }}>
+          <Typography sx={{ color: '#9ca3af', fontSize: '0.82rem' }}>
             Robotics Engineer & Technical Trainer · {new Date().getFullYear()}
           </Typography>
         </Box>

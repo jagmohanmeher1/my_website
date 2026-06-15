@@ -6,23 +6,23 @@ import { ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import RobotArm3D from './RobotArm3D';
 
-// Floating ambient particles
+// Subtle floating particles — very light on white background
 function FloatingParticles() {
   const pointsRef = useRef<THREE.Points>(null);
 
   const { positions, colors } = useMemo(() => {
-    const count = 180;
+    const count = 120;
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3 + 0] = (Math.random() - 0.5) * 16;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
-      // cyan to purple gradient based on height
-      const t = (pos[i * 3 + 1] + 6) / 12;
-      col[i * 3 + 0] = THREE.MathUtils.lerp(0.0,  0.51, t);
-      col[i * 3 + 1] = THREE.MathUtils.lerp(0.83, 0.22, t);
-      col[i * 3 + 2] = THREE.MathUtils.lerp(1.0,  0.93, t);
+      pos[i * 3 + 0] = (Math.random() - 0.5) * 14;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      // Blue to purple gradient
+      const t = Math.random();
+      col[i * 3 + 0] = THREE.MathUtils.lerp(0.15, 0.49, t);
+      col[i * 3 + 1] = THREE.MathUtils.lerp(0.39, 0.23, t);
+      col[i * 3 + 2] = THREE.MathUtils.lerp(0.92, 0.93, t);
     }
     return { positions: pos, colors: col };
   }, []);
@@ -35,17 +35,16 @@ function FloatingParticles() {
   }, [positions, colors]);
 
   const mat = useMemo(() => new THREE.PointsMaterial({
-    size: 0.045,
+    size: 0.042,
     vertexColors: true,
     transparent: true,
-    opacity: 0.6,
+    opacity: 0.35,
     sizeAttenuation: true,
   }), []);
 
   useFrame(({ clock }) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y = clock.elapsedTime * 0.018;
-      pointsRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.008) * 0.06;
+      pointsRef.current.rotation.y = clock.elapsedTime * 0.016;
     }
   });
 
@@ -80,11 +79,11 @@ export default function RobotScene({ style }: Props) {
       gl={{ alpha: true, antialias: true }}
       style={{ background: 'transparent', ...style }}
     >
-      {/* Lighting setup for metallic arm */}
-      <ambientLight intensity={0.22} />
+      {/* Bright professional lighting for white background */}
+      <ambientLight intensity={1.0} color="#f0f4ff" />
       <directionalLight
-        position={[8, 12, 6]}
-        intensity={1.5}
+        position={[8, 14, 6]}
+        intensity={1.6}
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={0.1}
@@ -94,28 +93,28 @@ export default function RobotScene({ style }: Props) {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
       />
-      {/* Cyan rim light */}
-      <pointLight position={[4, 6, 5]}  intensity={3.0} color="#00d4ff" distance={20} />
-      {/* Purple fill light */}
-      <pointLight position={[-5, 3, -4]} intensity={2.5} color="#8338ec" distance={18} />
-      {/* Warm uplight for depth */}
-      <pointLight position={[0, -2, 4]}  intensity={0.8} color="#1a4060" distance={12} />
+      {/* Blue key accent */}
+      <pointLight position={[4, 6, 5]}  intensity={2.0} color="#2563eb" distance={18} />
+      {/* Purple fill */}
+      <pointLight position={[-5, 3, -4]} intensity={1.2} color="#7c3aed" distance={14} />
+      {/* Soft top fill */}
+      <pointLight position={[0, 10, 2]}  intensity={0.8} color="#ffffff"  distance={20} />
 
       <Suspense fallback={null}>
         <RobotArm3D scrollProgress={scrollProgress} />
         <FloatingParticles />
         <ContactShadows
           position={[0, -2.08, 0]}
-          opacity={0.55}
+          opacity={0.18}
           scale={12}
-          blur={2.5}
+          blur={3}
           far={5}
-          color="#00d4ff"
+          color="#2563eb"
         />
       </Suspense>
 
-      {/* Subtle floor grid */}
-      <gridHelper args={[22, 22, '#0a2a3a', '#071a25']} position={[0, -2.1, 0]} />
+      {/* Very subtle floor grid */}
+      <gridHelper args={[22, 22, '#d1d5db', '#e5e7eb']} position={[0, -2.1, 0]} />
     </Canvas>
   );
 }

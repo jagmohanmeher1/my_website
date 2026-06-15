@@ -2,32 +2,32 @@ import { createTheme } from '@mui/material/styles';
 
 export const appTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     background: {
-      default: '#050810',
-      paper: 'rgba(255,255,255,0.04)',
+      default: '#ffffff',
+      paper: '#ffffff',
     },
     primary: {
-      main: '#00d4ff',
-      light: '#40e4ff',
-      dark: '#0099bb',
-      contrastText: '#050810',
+      main: '#2563eb',
+      light: '#3b82f6',
+      dark: '#1d4ed8',
+      contrastText: '#ffffff',
     },
     secondary: {
-      main: '#8338ec',
-      light: '#a060ff',
-      dark: '#5520bb',
+      main: '#7c3aed',
+      light: '#8b5cf6',
+      dark: '#6d28d9',
     },
     text: {
-      primary: 'rgba(255,255,255,0.92)',
-      secondary: 'rgba(255,255,255,0.58)',
-      disabled: 'rgba(255,255,255,0.32)',
+      primary: '#111827',
+      secondary: '#4b5563',
+      disabled: '#9ca3af',
     },
-    divider: 'rgba(255,255,255,0.08)',
-    error:   { main: '#ff4d4d' },
-    warning: { main: '#ffba42' },
-    info:    { main: '#00d4ff' },
-    success: { main: '#34d399' },
+    divider: 'rgba(0,0,0,0.07)',
+    error:   { main: '#ef4444' },
+    warning: { main: '#f59e0b' },
+    info:    { main: '#2563eb' },
+    success: { main: '#10b981' },
   },
   typography: {
     fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -41,48 +41,49 @@ export const appTheme = createTheme({
   },
   shape: { borderRadius: 12 },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          background:
-            'radial-gradient(1000px 700px at 8% -5%, rgba(0,212,255,0.08), transparent 60%),' +
-            'radial-gradient(1000px 700px at 92% 5%, rgba(131,56,236,0.10), transparent 60%),' +
-            '#050810',
-          backgroundAttachment: 'fixed',
-          minHeight: '100vh',
-        },
-      },
-    },
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none' as const,
           fontWeight: 600,
           borderRadius: 10,
+          boxShadow: 'none',
+          '&:hover': { boxShadow: 'none' },
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          backdropFilter: 'blur(10px)',
+          background: '#ffffff',
+          border: '1px solid rgba(0,0,0,0.07)',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.04)',
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          background: '#ffffff',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.05)',
         },
       },
     },
     MuiDivider: {
       styleOverrides: {
-        root: {
-          borderColor: 'rgba(255,255,255,0.08)',
+        root: { borderColor: 'rgba(0,0,0,0.07)' },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: { borderRadius: 8 },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          background: '#ffffff',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
         },
       },
     },

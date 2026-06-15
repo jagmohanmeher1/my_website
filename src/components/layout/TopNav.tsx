@@ -21,16 +21,15 @@ export default function TopNav() {
             component="a"
             href="#"
             sx={{
-              fontWeight: 800,
-              fontSize: '1rem',
-              letterSpacing: '0.04em',
+              fontWeight: 900,
+              fontSize: '1.05rem',
+              letterSpacing: '-0.01em',
               textDecoration: 'none',
-              background: 'linear-gradient(135deg, #00d4ff, #8338ec)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: '#111827',
             }}
           >
-            JM
+            Jagmohan{' '}
+            <Box component="span" sx={{ color: '#2563eb' }}>Meher</Box>
           </Typography>
 
           {/* Nav links */}
@@ -40,16 +39,16 @@ export default function TopNav() {
                 key={item.href}
                 component="a"
                 href={item.href}
-                color="inherit"
                 sx={{
                   textTransform: 'none',
                   px: 1.5,
                   fontSize: '0.88rem',
-                  color: 'rgba(255,255,255,0.65)',
+                  color: '#4b5563',
+                  fontWeight: 500,
                   borderRadius: 2,
                   '&:hover': {
-                    color: '#00d4ff',
-                    backgroundColor: 'rgba(0,212,255,0.06)',
+                    color: '#2563eb',
+                    backgroundColor: 'rgba(37,99,235,0.05)',
                   },
                 }}
               >

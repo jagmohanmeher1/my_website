@@ -3,55 +3,52 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 
-interface Skill {
-  name: string;
-  level: number;
-  accent: string;
-}
-
-const SKILL_GROUPS: Array<{ category: string; accent: string; skills: Skill[] }> = [
+const SKILL_GROUPS = [
   {
     category: 'Robotics & Hardware',
-    accent: '#00d4ff',
+    accent: '#2563eb',
+    bg: 'rgba(37,99,235,0.04)',
     skills: [
-      { name: 'Robotic Arm Design',  level: 95, accent: '#00d4ff' },
-      { name: 'Kinematics & Control',level: 90, accent: '#00d4ff' },
-      { name: 'Embedded Systems',    level: 88, accent: '#00d4ff' },
-      { name: 'ROS / ROS2',          level: 80, accent: '#00d4ff' },
-      { name: 'Sensors & Actuators', level: 85, accent: '#00d4ff' },
+      { name: 'Robotic Arm Design',   level: 95 },
+      { name: 'Kinematics & Control', level: 90 },
+      { name: 'Embedded Systems',     level: 88 },
+      { name: 'ROS / ROS2',           level: 80 },
+      { name: 'Sensors & Actuators',  level: 85 },
     ],
   },
   {
     category: 'Software & Algorithms',
-    accent: '#8338ec',
+    accent: '#7c3aed',
+    bg: 'rgba(124,58,237,0.04)',
     skills: [
-      { name: 'Python',              level: 92, accent: '#8338ec' },
-      { name: 'C / C++',             level: 85, accent: '#8338ec' },
-      { name: 'Motion Planning',     level: 88, accent: '#8338ec' },
-      { name: 'Computer Vision',     level: 78, accent: '#8338ec' },
-      { name: 'MATLAB / Simulink',   level: 74, accent: '#8338ec' },
+      { name: 'Python',             level: 92 },
+      { name: 'C / C++',            level: 85 },
+      { name: 'Motion Planning',    level: 88 },
+      { name: 'Computer Vision',    level: 78 },
+      { name: 'MATLAB / Simulink',  level: 74 },
     ],
   },
   {
     category: 'Teaching & Communication',
-    accent: '#ff006e',
+    accent: '#0891b2',
+    bg: 'rgba(8,145,178,0.04)',
     skills: [
-      { name: 'Technical Training',  level: 95, accent: '#ff006e' },
-      { name: 'Workshop Design',     level: 90, accent: '#ff006e' },
-      { name: 'Documentation',       level: 85, accent: '#ff006e' },
-      { name: 'Project Management',  level: 80, accent: '#ff006e' },
+      { name: 'Technical Training', level: 95 },
+      { name: 'Workshop Design',    level: 90 },
+      { name: 'Documentation',      level: 85 },
+      { name: 'Project Management', level: 80 },
     ],
   },
 ];
 
-function SkillBar({ name, level, accent, animate }: Skill & { animate: boolean }) {
+function SkillBar({ name, level, accent, animate }: { name: string; level: number; accent: string; animate: boolean }) {
   return (
-    <Stack spacing={0.5}>
-      <Stack direction="row" justifyContent="space-between">
-        <Typography sx={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.88rem', fontWeight: 500 }}>
+    <Stack spacing={0.6}>
+      <Stack direction="row" justifyContent="space-between" alignItems="baseline">
+        <Typography sx={{ color: '#374151', fontSize: '0.87rem', fontWeight: 500 }}>
           {name}
         </Typography>
-        <Typography sx={{ color: accent, fontSize: '0.82rem', fontWeight: 700 }}>
+        <Typography sx={{ color: accent, fontSize: '0.8rem', fontWeight: 700 }}>
           {level}%
         </Typography>
       </Stack>
@@ -59,7 +56,7 @@ function SkillBar({ name, level, accent, animate }: Skill & { animate: boolean }
         sx={{
           height: 5,
           borderRadius: 3,
-          background: 'rgba(255,255,255,0.08)',
+          background: 'rgba(0,0,0,0.07)',
           overflow: 'hidden',
         }}
       >
@@ -68,8 +65,7 @@ function SkillBar({ name, level, accent, animate }: Skill & { animate: boolean }
           sx={{
             height: '100%',
             borderRadius: 3,
-            background: `linear-gradient(90deg, ${accent}cc, ${accent})`,
-            boxShadow: `0 0 8px ${accent}66`,
+            background: `linear-gradient(90deg, ${accent}aa, ${accent})`,
             width: animate ? `${level}%` : '0%',
           }}
         />
@@ -92,17 +88,23 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <Box component="section" id="skills" className="spSection" ref={ref}>
+    <Box
+      component="section"
+      id="skills"
+      className="spSection"
+      ref={ref}
+      sx={{ background: '#f9fafb' }}
+    >
       <Container maxWidth="lg">
         <Stack spacing={6}>
           <Box>
             <Typography
               sx={{
-                color: '#8338ec',
+                color: '#7c3aed',
                 fontWeight: 700,
-                letterSpacing: '0.14em',
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                fontSize: '0.8rem',
+                fontSize: '0.78rem',
                 mb: 1,
               }}
             >
@@ -113,46 +115,53 @@ export default function SkillsSection() {
               sx={{
                 fontSize: { xs: '2.2rem', md: '2.8rem' },
                 fontWeight: 900,
-                background: 'linear-gradient(135deg, #8338ec, #00d4ff)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                color: '#111827',
               }}
             >
-              Skills & Tools
+              Skills &{' '}
+              <Box component="span" sx={{ color: '#7c3aed' }}>Tools</Box>
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
+          <Grid container spacing={3}>
             {SKILL_GROUPS.map(group => (
               <Grid item xs={12} md={4} key={group.category}>
                 <Box
-                  className="spGlass"
                   sx={{
                     borderRadius: 3,
                     p: 3,
                     height: '100%',
-                    border: `1px solid ${group.accent}22`,
-                    '&:hover': { borderColor: `${group.accent}44` },
-                    transition: 'border-color 0.3s ease',
+                    background: group.bg,
+                    border: `1px solid ${group.accent}18`,
+                    transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+                    '&:hover': {
+                      boxShadow: `0 8px 32px ${group.accent}15`,
+                      borderColor: `${group.accent}35`,
+                    },
                   }}
                 >
                   <Stack spacing={2.5}>
                     <Typography
                       sx={{
                         fontWeight: 800,
-                        fontSize: '1rem',
+                        fontSize: '0.95rem',
                         color: group.accent,
-                        letterSpacing: '0.04em',
-                        pb: 1,
-                        borderBottom: `1px solid ${group.accent}22`,
+                        letterSpacing: '0.02em',
+                        pb: 1.5,
+                        borderBottom: `2px solid ${group.accent}20`,
                       }}
                     >
                       {group.category}
                     </Typography>
-
-                    <Stack spacing={2}>
+                    <Stack spacing={2.2}>
                       {group.skills.map(skill => (
-                        <SkillBar key={skill.name} {...skill} animate={animate} />
+                        <SkillBar
+                          key={skill.name}
+                          name={skill.name}
+                          level={skill.level}
+                          accent={group.accent}
+                          animate={animate}
+                        />
                       ))}
                     </Stack>
                   </Stack>

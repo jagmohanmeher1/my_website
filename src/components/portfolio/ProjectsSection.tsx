@@ -20,34 +20,34 @@ import { videos } from '../../lib/portfolio/videos';
 
 const categories: Array<ProjectCategory | 'All'> = ['All', 'Mechatronics', 'IoT', 'Research'];
 
-function categoryStyle(category: ProjectCategory): { bg: string; color: string } {
-  if (category === 'Mechatronics') return { bg: 'rgba(0,212,255,0.14)', color: '#00d4ff' };
-  if (category === 'IoT')          return { bg: 'rgba(131,56,236,0.14)', color: '#8338ec' };
-  return                                  { bg: 'rgba(255,0,110,0.14)',  color: '#ff006e' };
+function categoryStyle(cat: ProjectCategory): { bg: string; color: string } {
+  if (cat === 'Mechatronics') return { bg: 'rgba(37,99,235,0.09)',  color: '#2563eb' };
+  if (cat === 'IoT')          return { bg: 'rgba(124,58,237,0.09)', color: '#7c3aed' };
+  return                             { bg: 'rgba(8,145,178,0.09)',  color: '#0891b2' };
 }
 
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('All');
   const [openProject, setOpenProject] = useState<Project | null>(null);
 
-  const filtered = useMemo(() => {
-    if (activeCategory === 'All') return projects;
-    return projects.filter(p => p.category === activeCategory);
-  }, [activeCategory]);
+  const filtered = useMemo(
+    () => activeCategory === 'All' ? projects : projects.filter(p => p.category === activeCategory),
+    [activeCategory]
+  );
 
   return (
-    <Box component="section" id="projects" className="spSection">
+    <Box component="section" id="projects" className="spSection" sx={{ background: '#ffffff' }}>
       <Container maxWidth="lg">
         <Stack spacing={4}>
           {/* Header */}
           <Box>
             <Typography
               sx={{
-                color: '#ff006e',
+                color: '#0891b2',
                 fontWeight: 700,
-                letterSpacing: '0.14em',
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                fontSize: '0.8rem',
+                fontSize: '0.78rem',
                 mb: 1,
               }}
             >
@@ -58,16 +58,15 @@ export default function ProjectsSection() {
               sx={{
                 fontSize: { xs: '2.2rem', md: '2.8rem' },
                 fontWeight: 900,
-                background: 'linear-gradient(135deg, #00d4ff, #8338ec, #ff006e)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                color: '#111827',
               }}
             >
-              Projects
+              Selected{' '}
+              <Box component="span" sx={{ color: '#0891b2' }}>Projects</Box>
             </Typography>
           </Box>
 
-          {/* Category filter */}
+          {/* Filter tabs */}
           <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
             {categories.map(c => {
               const active = c === activeCategory;
@@ -77,19 +76,19 @@ export default function ProjectsSection() {
                   onClick={() => setActiveCategory(c)}
                   variant={active ? 'contained' : 'outlined'}
                   size="small"
+                  color="primary"
                   sx={{
                     borderRadius: 2,
-                    px: 2,
-                    py: 0.8,
-                    background: active ? 'linear-gradient(135deg, #00d4ff, #8338ec)' : 'transparent',
-                    color: active ? '#050810' : 'rgba(255,255,255,0.60)',
-                    borderColor: active ? 'transparent' : 'rgba(255,255,255,0.14)',
+                    px: 2.2,
+                    py: 0.9,
                     fontWeight: active ? 700 : 500,
+                    borderColor: active ? 'transparent' : 'rgba(0,0,0,0.12)',
+                    color: active ? '#ffffff' : '#4b5563',
+                    background: active ? '#2563eb' : 'transparent',
                     '&:hover': {
-                      background: active
-                        ? 'linear-gradient(135deg, #00d4ff, #8338ec)'
-                        : 'rgba(255,255,255,0.06)',
-                      borderColor: active ? 'transparent' : 'rgba(255,255,255,0.25)',
+                      background: active ? '#1d4ed8' : 'rgba(37,99,235,0.05)',
+                      borderColor: active ? 'transparent' : '#2563eb',
+                      color: active ? '#ffffff' : '#2563eb',
                     },
                   }}
                 >
@@ -99,7 +98,7 @@ export default function ProjectsSection() {
             })}
           </Stack>
 
-          {/* Project grid */}
+          {/* Grid */}
           <Grid container spacing={2.5}>
             {filtered.map(p => {
               const { bg, color } = categoryStyle(p.category);
@@ -110,44 +109,33 @@ export default function ProjectsSection() {
                     className="projectCard"
                     sx={{
                       borderRadius: 2.5,
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      background: 'rgba(255,255,255,0.04)',
-                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(0,0,0,0.07)',
                       height: '100%',
+                      background: '#ffffff',
                     }}
                   >
                     <CardContent sx={{ p: 2.5 }}>
-                      <Stack spacing={1.4}>
+                      <Stack spacing={1.5}>
                         <Chip
                           label={p.category}
                           size="small"
                           sx={{
                             background: bg,
                             color,
-                            border: `1px solid ${color}30`,
+                            border: `1px solid ${color}25`,
                             fontWeight: 700,
-                            fontSize: '0.75rem',
+                            fontSize: '0.73rem',
                             width: 'fit-content',
                             borderRadius: 1.5,
                           }}
                         />
                         <Typography
-                          sx={{
-                            fontWeight: 800,
-                            fontSize: '1.05rem',
-                            lineHeight: 1.3,
-                            color: 'rgba(255,255,255,0.92)',
-                          }}
+                          sx={{ fontWeight: 800, fontSize: '1.02rem', lineHeight: 1.3, color: '#111827' }}
                         >
                           {p.title}
                         </Typography>
                         <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.52)',
-                            lineHeight: 1.7,
-                            fontSize: '0.9rem',
-                            minHeight: 52,
-                          }}
+                          sx={{ color: '#6b7280', lineHeight: 1.7, fontSize: '0.88rem', minHeight: 52 }}
                         >
                           {p.summary}
                         </Typography>
@@ -158,10 +146,11 @@ export default function ProjectsSection() {
                           sx={{
                             p: 0,
                             mt: 0.5,
-                            color: color,
+                            color,
                             fontWeight: 600,
+                            fontSize: '0.85rem',
                             justifyContent: 'flex-start',
-                            '&:hover': { backgroundColor: 'transparent', opacity: 0.8 },
+                            '&:hover': { backgroundColor: 'transparent', opacity: 0.75 },
                           }}
                         >
                           View details →
@@ -180,17 +169,10 @@ export default function ProjectsSection() {
             onClose={() => setOpenProject(null)}
             maxWidth="md"
             fullWidth
-            PaperProps={{
-              sx: {
-                background: '#0d1b2a',
-                border: '1px solid rgba(0,212,255,0.2)',
-                borderRadius: 3,
-              },
-            }}
           >
             {openProject && (
               <>
-                <DialogTitle sx={{ fontWeight: 900, color: 'rgba(255,255,255,0.92)', pb: 1 }}>
+                <DialogTitle sx={{ fontWeight: 900, color: '#111827', pb: 1 }}>
                   {openProject.title}
                 </DialogTitle>
                 <DialogContent>
@@ -201,22 +183,16 @@ export default function ProjectsSection() {
                         <Chip
                           label={openProject.category}
                           size="small"
-                          sx={{
-                            background: bg,
-                            color,
-                            border: `1px solid ${color}30`,
-                            fontWeight: 700,
-                            width: 'fit-content',
-                          }}
+                          sx={{ background: bg, color, border: `1px solid ${color}25`, fontWeight: 700, width: 'fit-content' }}
                         />
                       );
                     })()}
-                    <Typography sx={{ color: 'rgba(255,255,255,0.65)', lineHeight: 1.75 }}>
+                    <Typography sx={{ color: '#4b5563', lineHeight: 1.75 }}>
                       {openProject.summary}
                     </Typography>
                     <Stack spacing={0.9} sx={{ pl: 1 }}>
                       {openProject.highlights.map(h => (
-                        <Typography key={h} sx={{ color: 'rgba(255,255,255,0.58)', fontSize: '0.93rem' }}>
+                        <Typography key={h} sx={{ color: '#6b7280', fontSize: '0.92rem' }}>
                           — {h}
                         </Typography>
                       ))}
@@ -230,11 +206,8 @@ export default function ProjectsSection() {
                             target="_blank"
                             rel="noreferrer"
                             variant="contained"
-                            sx={{
-                              background: 'linear-gradient(135deg, #00d4ff, #8338ec)',
-                              color: '#050810',
-                              fontWeight: 700,
-                            }}
+                            color="primary"
+                            sx={{ fontWeight: 700 }}
                           >
                             {l.label}
                           </Button>
@@ -247,17 +220,21 @@ export default function ProjectsSection() {
             )}
           </Dialog>
 
-          {/* Video section */}
+          {/* Videos */}
           <Box
-            className="spGlass"
-            sx={{ borderRadius: 2.5, p: 3, border: '1px solid rgba(255,255,255,0.08)' }}
+            sx={{
+              borderRadius: 3,
+              p: 3,
+              border: '1px solid rgba(0,0,0,0.07)',
+              background: '#f9fafb',
+            }}
           >
             <Stack spacing={2}>
-              <Typography sx={{ fontWeight: 800, fontSize: '1.2rem', color: 'rgba(255,255,255,0.88)' }}>
+              <Typography sx={{ fontWeight: 800, fontSize: '1.15rem', color: '#111827' }}>
                 Workshop Videos
               </Typography>
-              <Typography sx={{ color: 'rgba(255,255,255,0.50)', lineHeight: 1.7, fontSize: '0.92rem' }}>
-                Teaching sessions and technical demonstrations from YouTube.
+              <Typography sx={{ color: '#6b7280', lineHeight: 1.7, fontSize: '0.9rem' }}>
+                Teaching sessions and technical demonstrations.
               </Typography>
               <Box
                 sx={{
@@ -266,7 +243,7 @@ export default function ProjectsSection() {
                   pr: 1,
                   '&::-webkit-scrollbar': { width: 6 },
                   '&::-webkit-scrollbar-thumb': {
-                    background: 'rgba(0,212,255,0.25)',
+                    background: 'rgba(37,99,235,0.2)',
                     borderRadius: 999,
                   },
                 }}
@@ -278,34 +255,33 @@ export default function ProjectsSection() {
                       sx={{
                         borderRadius: 2,
                         overflow: 'hidden',
-                        border: '1px solid rgba(255,255,255,0.08)',
+                        border: '1px solid rgba(0,0,0,0.07)',
+                        background: '#ffffff',
                       }}
                     >
                       <Typography
                         sx={{
                           px: 2,
                           py: 1.2,
-                          background: 'linear-gradient(135deg, rgba(0,212,255,0.10), rgba(131,56,236,0.10))',
-                          borderBottom: '1px solid rgba(255,255,255,0.06)',
+                          background: 'rgba(37,99,235,0.04)',
+                          borderBottom: '1px solid rgba(0,0,0,0.06)',
                           fontWeight: 700,
-                          fontSize: '0.95rem',
-                          color: 'rgba(255,255,255,0.82)',
+                          fontSize: '0.92rem',
+                          color: '#111827',
                         }}
                       >
                         {v.title}
                       </Typography>
-                      <Box>
-                        <iframe
-                          title={v.title}
-                          src={v.embedUrl}
-                          width="100%"
-                          height="220"
-                          style={{ border: 0, display: 'block' }}
-                          loading="lazy"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </Box>
+                      <iframe
+                        title={v.title}
+                        src={v.embedUrl}
+                        width="100%"
+                        height="220"
+                        style={{ border: 0, display: 'block' }}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
                     </Box>
                   ))}
                 </Stack>
