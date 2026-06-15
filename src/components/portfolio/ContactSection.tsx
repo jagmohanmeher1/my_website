@@ -6,9 +6,9 @@ import { useState } from 'react';
 const EMAIL = 'jagmohanmeher1@gmail.com';
 
 const SOCIAL = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jagmohan-meher/', color: '#A67C52' },
-  { label: 'GitHub',   href: 'https://github.com/jagmohanmeher1',            color: '#7C6F5F' },
-  { label: 'YouTube',  href: 'https://www.youtube.com/',                     color: '#876140' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jagmohan-meher/', color: '#F97316' },
+  { label: 'GitHub',   href: 'https://github.com/jagmohanmeher1',            color: '#8B5CF6' },
+  { label: 'YouTube',  href: 'https://www.youtube.com/',                     color: '#EC4899' },
 ];
 
 export default function ContactSection() {
@@ -24,34 +24,30 @@ export default function ContactSection() {
 
   return (
     <Box component="section" id="contact" className="spSection" sx={{ background: '#ffffff' }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container spacing={{ xs: 4, md: 8 }} alignItems="flex-start">
           {/* Left */}
           <Grid item xs={12} md={5}>
             <Stack spacing={3}>
               <Box>
-                <Typography
+                <Box
                   sx={{
-                    color: '#7C6F5F',
-                    fontWeight: 700,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    fontSize: '0.78rem',
-                    mb: 1,
+                    display: 'inline-block', px: 1.6, py: 0.7, borderRadius: 99, mb: 2,
+                    background: 'rgba(236,72,153,0.10)',
+                    border: '1px solid rgba(236,72,153,0.28)',
                   }}
                 >
-                  Get in Touch
-                </Typography>
-                <Typography
-                  variant="h2"
-                  sx={{ fontSize: { xs: '2.2rem', md: '2.8rem' }, fontWeight: 900, lineHeight: 1.1, color: '#2B2620' }}
-                >
+                  <Typography sx={{ color: '#EC4899', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.74rem' }}>
+                    Get in Touch
+                  </Typography>
+                </Box>
+                <Typography variant="h2" sx={{ fontSize: { xs: '2.4rem', md: '3rem' }, fontWeight: 950, lineHeight: 1.05, color: '#18181B' }}>
                   Let's build something{' '}
-                  <Box component="span" sx={{ color: '#A67C52' }}>that moves.</Box>
+                  <Box component="span" className="gradientText">that moves.</Box>
                 </Typography>
               </Box>
 
-              <Typography sx={{ color: '#6B6259', lineHeight: 1.8, fontSize: '1rem' }}>
+              <Typography sx={{ color: '#52525B', lineHeight: 1.8, fontSize: '1.05rem' }}>
                 Open to robotics engineering collaborations, technical training partnerships,
                 research projects, and educational content creation.
               </Typography>
@@ -69,25 +65,25 @@ export default function ContactSection() {
                       alignItems: 'center',
                       gap: 1.5,
                       textDecoration: 'none',
-                      color: '#6B6259',
+                      color: '#52525B',
                       fontSize: '0.94rem',
-                      fontWeight: 500,
-                      p: 1.4,
-                      borderRadius: 2,
-                      border: '1px solid rgba(43,38,32,0.08)',
-                      background: '#FBF8F2',
+                      fontWeight: 600,
+                      p: 1.5,
+                      borderRadius: 99,
+                      border: '1px solid rgba(24,24,27,0.08)',
+                      background: '#FAFAFA',
                       transition: 'all 0.2s ease',
                       '&:hover': {
                         color: link.color,
-                        borderColor: `${link.color}3a`,
-                        background: `${link.color}0a`,
-                        transform: 'translateX(3px)',
-                        boxShadow: `0 4px 16px ${link.color}16`,
+                        borderColor: `${link.color}44`,
+                        background: `${link.color}0d`,
+                        transform: 'translateX(4px)',
+                        boxShadow: `0 6px 20px ${link.color}1c`,
                       },
                     }}
                   >
                     {link.label}
-                    <Typography component="span" sx={{ ml: 'auto', fontSize: '0.8rem', opacity: 0.45 }}>
+                    <Typography component="span" sx={{ ml: 'auto', fontSize: '0.8rem', opacity: 0.5 }}>
                       ↗
                     </Typography>
                   </Box>
@@ -100,28 +96,28 @@ export default function ContactSection() {
           <Grid item xs={12} md={7}>
             <Box
               sx={{
-                borderRadius: 3,
+                borderRadius: 5,
                 p: { xs: 3, md: 4 },
-                background: '#F6F1E7',
-                border: '1px solid rgba(43,38,32,0.08)',
-                boxShadow: '0 4px 24px rgba(43,38,32,0.06)',
+                background: 'linear-gradient(150deg, #FFF7ED 0%, #FDF2F8 100%)',
+                border: '1px solid rgba(24,24,27,0.07)',
+                boxShadow: '0 8px 32px rgba(24,24,27,0.07)',
               }}
             >
               <Stack spacing={3}>
-                <Typography sx={{ fontWeight: 800, fontSize: '1.25rem', color: '#2B2620' }}>
+                <Typography sx={{ fontWeight: 900, fontSize: '1.35rem', color: '#18181B' }}>
                   Drop me a line
                 </Typography>
 
                 <Box
                   sx={{
                     p: 2,
-                    borderRadius: 2,
+                    borderRadius: 3,
                     background: '#ffffff',
-                    border: '1px solid rgba(166,124,82,0.25)',
+                    border: '1px solid rgba(249,115,22,0.28)',
                     fontFamily: 'monospace',
                     fontSize: '1rem',
-                    color: '#876140',
-                    fontWeight: 600,
+                    color: '#EA580C',
+                    fontWeight: 700,
                     wordBreak: 'break-all',
                   }}
                 >
@@ -131,9 +127,12 @@ export default function ContactSection() {
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
                   <Button
                     variant="contained"
-                    color="primary"
                     onClick={copyEmail}
-                    sx={{ px: 3, py: 1.3, borderRadius: 2, fontWeight: 700 }}
+                    sx={{
+                      px: 3, py: 1.3, borderRadius: 99, fontWeight: 800,
+                      background: 'linear-gradient(120deg, #F97316, #EC4899)',
+                      '&:hover': { background: 'linear-gradient(120deg, #EA580C, #DB2777)' },
+                    }}
                   >
                     {copied ? '✓ Copied!' : 'Copy Email'}
                   </Button>
@@ -143,19 +142,17 @@ export default function ContactSection() {
                     href={`mailto:${EMAIL}?subject=Robotics%20Collaboration`}
                     variant="outlined"
                     sx={{
-                      px: 3,
-                      py: 1.3,
-                      borderRadius: 2,
-                      borderColor: 'rgba(166,124,82,0.4)',
-                      color: '#876140',
-                      '&:hover': { borderColor: '#A67C52', backgroundColor: 'rgba(166,124,82,0.06)' },
+                      px: 3, py: 1.3, borderRadius: 99,
+                      borderColor: 'rgba(249,115,22,0.4)',
+                      color: '#EA580C',
+                      '&:hover': { borderColor: '#F97316', backgroundColor: 'rgba(249,115,22,0.06)' },
                     }}
                   >
                     Open in Mail
                   </Button>
                 </Stack>
 
-                <Typography sx={{ color: '#A8A096', fontSize: '0.82rem', lineHeight: 1.65 }}>
+                <Typography sx={{ color: '#A1A1AA', fontSize: '0.82rem', lineHeight: 1.65 }}>
                   Typical response time: 1–2 business days.
                   Based in India, available for remote and on-site engagements.
                 </Typography>

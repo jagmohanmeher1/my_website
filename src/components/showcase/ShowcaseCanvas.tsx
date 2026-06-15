@@ -18,30 +18,30 @@ export default function ShowcaseCanvas({ active }: Props) {
       gl={{ alpha: true, antialias: true }}
       style={{ background: 'transparent' }}
     >
-      {/* Warm studio lights */}
-      <ambientLight intensity={0.9} color="#FFF6E9" />
+      {/* Bright studio lights */}
+      <ambientLight intensity={1.0} color="#FFFFFF" />
       <directionalLight
         position={[6, 10, 5]}
         intensity={1.4}
-        color="#FFF3E0"
+        color="#FFFFFF"
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-      <pointLight position={[-5, 4, -3]} intensity={1.0} color="#C0986B" distance={18} />
-      <pointLight position={[3, 2, 6]}  intensity={0.8} color="#FFFFFF" distance={16} />
+      <pointLight position={[-5, 4, -3]} intensity={1.1} color="#F97316" distance={18} />
+      <pointLight position={[3, 2, 6]}  intensity={0.9} color="#EC4899" distance={16} />
 
       <Suspense fallback={null}>
-        {active === 'humanoid'  && <HumanoidRobot />}
-        {active === 'rover'     && <RoverRobot />}
-        {active === 'quadruped' && <QuadrupedRobot />}
+        {active === 'humanoid'  && <HumanoidRobot  accent="#F97316" />}
+        {active === 'rover'     && <RoverRobot     accent="#F59E0B" />}
+        {active === 'quadruped' && <QuadrupedRobot accent="#EC4899" />}
 
         <ContactShadows
           position={[0, -1.6, 0]}
-          opacity={0.28}
+          opacity={0.26}
           scale={10}
           blur={2.6}
           far={4}
-          color="#5E5345"
+          color="#9A3412"
         />
       </Suspense>
 

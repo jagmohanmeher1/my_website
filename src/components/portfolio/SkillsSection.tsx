@@ -6,8 +6,8 @@ import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 const SKILL_GROUPS = [
   {
     category: 'Robotics & Hardware',
-    accent: '#A67C52',
-    bg: 'rgba(166,124,82,0.05)',
+    accent: '#F97316',
+    bg: 'rgba(249,115,22,0.05)',
     skills: [
       { name: 'Robotic Arm Design',   level: 95 },
       { name: 'Kinematics & Control', level: 90 },
@@ -18,8 +18,8 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Software & Algorithms',
-    accent: '#7C6F5F',
-    bg: 'rgba(124,111,95,0.05)',
+    accent: '#8B5CF6',
+    bg: 'rgba(139,92,246,0.05)',
     skills: [
       { name: 'Python',             level: 92 },
       { name: 'C / C++',            level: 85 },
@@ -30,8 +30,8 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Teaching & Communication',
-    accent: '#876140',
-    bg: 'rgba(135,97,64,0.05)',
+    accent: '#EC4899',
+    bg: 'rgba(236,72,153,0.05)',
     skills: [
       { name: 'Technical Training', level: 95 },
       { name: 'Workshop Design',    level: 90 },
@@ -45,20 +45,20 @@ function SkillBar({ name, level, accent, animate }: { name: string; level: numbe
   return (
     <Stack spacing={0.6}>
       <Stack direction="row" justifyContent="space-between" alignItems="baseline">
-        <Typography sx={{ color: '#4A453E', fontSize: '0.87rem', fontWeight: 500 }}>
+        <Typography sx={{ color: '#3F3F46', fontSize: '0.87rem', fontWeight: 600 }}>
           {name}
         </Typography>
-        <Typography sx={{ color: accent, fontSize: '0.8rem', fontWeight: 700 }}>
+        <Typography sx={{ color: accent, fontSize: '0.8rem', fontWeight: 800 }}>
           {level}%
         </Typography>
       </Stack>
-      <Box sx={{ height: 5, borderRadius: 3, background: 'rgba(43,38,32,0.08)', overflow: 'hidden' }}>
+      <Box sx={{ height: 6, borderRadius: 99, background: 'rgba(24,24,27,0.07)', overflow: 'hidden' }}>
         <Box
           className="skillBarFill"
           sx={{
             height: '100%',
-            borderRadius: 3,
-            background: `linear-gradient(90deg, ${accent}bb, ${accent})`,
+            borderRadius: 99,
+            background: `linear-gradient(90deg, ${accent}cc, ${accent})`,
             width: animate ? `${level}%` : '0%',
           }}
         />
@@ -82,24 +82,23 @@ export default function SkillsSection() {
 
   return (
     <Box component="section" id="skills" className="spSection" ref={ref} sx={{ background: '#ffffff' }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Stack spacing={6}>
           <Box>
-            <Typography
+            <Box
               sx={{
-                color: '#7C6F5F',
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                fontSize: '0.78rem',
-                mb: 1,
+                display: 'inline-block', px: 1.6, py: 0.7, borderRadius: 99, mb: 2,
+                background: 'rgba(139,92,246,0.10)',
+                border: '1px solid rgba(139,92,246,0.28)',
               }}
             >
-              Expertise
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '2.2rem', md: '2.8rem' }, fontWeight: 900, color: '#2B2620' }}>
+              <Typography sx={{ color: '#8B5CF6', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.74rem' }}>
+                Expertise
+              </Typography>
+            </Box>
+            <Typography variant="h2" sx={{ fontSize: { xs: '2.4rem', md: '3rem' }, fontWeight: 950, color: '#18181B' }}>
               Skills &{' '}
-              <Box component="span" sx={{ color: '#7C6F5F' }}>Tools</Box>
+              <Box component="span" sx={{ color: '#8B5CF6' }}>Tools</Box>
             </Typography>
           </Box>
 
@@ -108,15 +107,16 @@ export default function SkillsSection() {
               <Grid item xs={12} md={4} key={group.category}>
                 <Box
                   sx={{
-                    borderRadius: 3,
+                    borderRadius: 4,
                     p: 3,
                     height: '100%',
                     background: group.bg,
-                    border: `1px solid ${group.accent}1f`,
-                    transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+                    border: `1px solid ${group.accent}22`,
+                    transition: 'box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease',
                     '&:hover': {
-                      boxShadow: `0 10px 34px ${group.accent}18`,
-                      borderColor: `${group.accent}3a`,
+                      boxShadow: `0 14px 40px ${group.accent}20`,
+                      borderColor: `${group.accent}44`,
+                      transform: 'translateY(-3px)',
                     },
                   }}
                 >
@@ -124,24 +124,18 @@ export default function SkillsSection() {
                     <Typography
                       sx={{
                         fontWeight: 800,
-                        fontSize: '0.95rem',
+                        fontSize: '0.98rem',
                         color: group.accent,
                         letterSpacing: '0.02em',
                         pb: 1.5,
-                        borderBottom: `2px solid ${group.accent}24`,
+                        borderBottom: `2px solid ${group.accent}28`,
                       }}
                     >
                       {group.category}
                     </Typography>
                     <Stack spacing={2.2}>
                       {group.skills.map(skill => (
-                        <SkillBar
-                          key={skill.name}
-                          name={skill.name}
-                          level={skill.level}
-                          accent={group.accent}
-                          animate={animate}
-                        />
+                        <SkillBar key={skill.name} name={skill.name} level={skill.level} accent={group.accent} animate={animate} />
                       ))}
                     </Stack>
                   </Stack>

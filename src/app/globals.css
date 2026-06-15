@@ -15,35 +15,56 @@ html {
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: #ffffff;
-  color: #2b2620;
+  color: #18181b;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* Gradient text helper */
+.gradientText {
+  background: linear-gradient(120deg, #f97316, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* Fixed navbar */
 .topNavBackdrop {
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(43, 38, 32, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(24, 24, 27, 0.07);
 }
 
 /* Section helpers */
 .spSection {
-  padding: 96px 0;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .spSectionTitle {
-  font-weight: 900;
+  font-weight: 950;
 }
 
 /* Card */
 .spGlass {
   background: #ffffff;
-  border: 1px solid rgba(43, 38, 32, 0.09);
-  box-shadow: 0 1px 3px rgba(43, 38, 32, 0.05), 0 10px 28px rgba(43, 38, 32, 0.05);
+  border: 1px solid rgba(24, 24, 27, 0.08);
+  box-shadow: 0 1px 3px rgba(24, 24, 27, 0.04), 0 12px 32px rgba(24, 24, 27, 0.06);
+}
+
+/* Playful background blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Anchor scroll offset */
@@ -66,12 +87,12 @@ body {
 }
 
 .projectCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 42px rgba(166, 124, 82, 0.16) !important;
-  border-color: rgba(166, 124, 82, 0.32) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 18px 48px rgba(249, 115, 22, 0.18) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
 }
 
-/* Grab cursor hint for interactive 3D canvases */
+/* Grab cursor for interactive canvases */
 .robotCanvasInteractive {
   cursor: grab;
 }

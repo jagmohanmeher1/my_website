@@ -4,7 +4,6 @@ import { Suspense, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 
-// Load the heavy 3D canvas only on the client
 const ShowcaseCanvas = dynamic(() => import('./ShowcaseCanvas'), {
   ssr: false,
   loading: () => (
@@ -14,7 +13,7 @@ const ShowcaseCanvas = dynamic(() => import('./ShowcaseCanvas'), {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#A8A096',
+        color: '#A1A1AA',
         fontSize: '0.9rem',
       }}
     >
@@ -30,6 +29,7 @@ const ROBOTS = [
     title: 'Bipedal Humanoid',
     desc: 'A two-legged assistant robot with articulated arms and a sensor head — built for human-centric environments and interaction research.',
     specs: ['12 DOF', 'Vision + IMU', 'Balance Control'],
+    accent: '#F97316',
   },
   {
     id: 'rover',
@@ -37,6 +37,7 @@ const ROBOTS = [
     title: '6-Wheel Rover',
     desc: 'An all-terrain mobile platform with rocker suspension and a panning sensor mast — designed for autonomous navigation and inspection.',
     specs: ['6WD Drivetrain', 'LiDAR Mast', 'Solar Deck'],
+    accent: '#F59E0B',
   },
   {
     id: 'quadruped',
@@ -44,6 +45,7 @@ const ROBOTS = [
     title: 'Quadruped Walker',
     desc: 'A four-legged dynamic robot using a trotting gait — agile over rough terrain where wheels cannot go.',
     specs: ['Trot Gait', '8 Actuators', 'Terrain Adaptive'],
+    accent: '#EC4899',
   },
 ] as const;
 
@@ -54,42 +56,43 @@ export default function InteractiveRobots() {
   const current = ROBOTS.find(r => r.id === active)!;
 
   return (
-    <Box
-      component="section"
-      id="robots"
-      className="spSection"
-      sx={{ background: '#F6F1E7' }}
-    >
-      <Container maxWidth="lg">
+    <Box component="section" id="robots" className="spSection" sx={{ background: '#FFFBF5' }}>
+      {/* Playful blobs */}
+      <Box aria-hidden className="blob" sx={{ width: 360, height: 360, top: '-6%', left: '-4%', background: '#FDBA74' }} />
+      <Box aria-hidden className="blob" sx={{ width: 320, height: 320, bottom: '-8%', right: '-4%', background: '#F9A8D4' }} />
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Stack spacing={5}>
           {/* Header */}
           <Box sx={{ textAlign: 'center', maxWidth: 720, mx: 'auto' }}>
-            <Typography
+            <Box
               sx={{
-                color: '#A67C52',
-                fontWeight: 700,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                fontSize: '0.78rem',
-                mb: 1,
+                display: 'inline-block',
+                px: 1.6,
+                py: 0.7,
+                borderRadius: 99,
+                background: 'rgba(236,72,153,0.10)',
+                border: '1px solid rgba(236,72,153,0.28)',
+                mb: 2,
               }}
             >
-              Interactive 3D Lab
-            </Typography>
-            <Typography
-              variant="h2"
-              sx={{ fontSize: { xs: '2.2rem', md: '2.8rem' }, fontWeight: 900, color: '#2B2620' }}
-            >
+              <Typography
+                sx={{ color: '#EC4899', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.74rem' }}
+              >
+                Interactive 3D Lab
+              </Typography>
+            </Box>
+            <Typography variant="h2" sx={{ fontSize: { xs: '2.4rem', md: '3rem' }, fontWeight: 950, color: '#18181B' }}>
               Meet the{' '}
-              <Box component="span" sx={{ color: '#A67C52' }}>Robots</Box>
+              <Box component="span" className="gradientText">Robots</Box>
             </Typography>
-            <Typography sx={{ color: '#6B6259', lineHeight: 1.8, fontSize: '1rem', mt: 1.5 }}>
+            <Typography sx={{ color: '#52525B', lineHeight: 1.8, fontSize: '1.05rem', mt: 1.5 }}>
               Drag to orbit each model and explore it from any angle. Switch between the
-              platforms below — every one is a live 3D model rendered in your browser.
+              platforms below — every one is a live 3D model rendered right in your browser.
             </Typography>
           </Box>
 
-          {/* Selector buttons */}
+          {/* Selector */}
           <Stack direction="row" spacing={1.5} justifyContent="center" sx={{ flexWrap: 'wrap', gap: 1.5 }}>
             {ROBOTS.map(r => {
               const isActive = r.id === active;
@@ -101,15 +104,16 @@ export default function InteractiveRobots() {
                   sx={{
                     px: 3,
                     py: 1.1,
-                    borderRadius: 3,
-                    fontWeight: isActive ? 700 : 500,
-                    background: isActive ? '#A67C52' : 'transparent',
-                    color: isActive ? '#ffffff' : '#6B6259',
-                    borderColor: isActive ? 'transparent' : 'rgba(43,38,32,0.15)',
+                    borderRadius: 99,
+                    fontWeight: isActive ? 800 : 600,
+                    background: isActive ? r.accent : 'transparent',
+                    color: isActive ? '#ffffff' : '#52525B',
+                    borderColor: isActive ? 'transparent' : 'rgba(24,24,27,0.16)',
                     '&:hover': {
-                      background: isActive ? '#876140' : 'rgba(166,124,82,0.06)',
-                      borderColor: isActive ? 'transparent' : '#A67C52',
-                      color: isActive ? '#ffffff' : '#A67C52',
+                      background: isActive ? r.accent : `${r.accent}12`,
+                      borderColor: isActive ? 'transparent' : r.accent,
+                      color: isActive ? '#ffffff' : r.accent,
+                      opacity: isActive ? 0.92 : 1,
                     },
                   }}
                 >
@@ -128,23 +132,22 @@ export default function InteractiveRobots() {
               alignItems: 'center',
             }}
           >
-            {/* 3D viewer */}
             <Box
               className="robotCanvasInteractive"
               sx={{
                 height: { xs: 340, sm: 420, md: 480 },
-                borderRadius: 4,
+                borderRadius: 5,
                 overflow: 'hidden',
-                background: 'linear-gradient(160deg, #FFFFFF 0%, #F1E9DA 100%)',
-                border: '1px solid rgba(43,38,32,0.08)',
-                boxShadow: '0 16px 48px rgba(43,38,32,0.08)',
+                background: `linear-gradient(160deg, #FFFFFF 0%, ${current.accent}14 100%)`,
+                border: '1px solid rgba(24,24,27,0.07)',
+                boxShadow: '0 20px 56px rgba(24,24,27,0.10)',
                 position: 'relative',
+                transition: 'background 0.4s ease',
               }}
             >
               <Suspense fallback={null}>
                 <ShowcaseCanvas active={active} />
               </Suspense>
-              {/* Drag hint */}
               <Box
                 sx={{
                   position: 'absolute',
@@ -154,8 +157,8 @@ export default function InteractiveRobots() {
                   px: 1.6,
                   py: 0.5,
                   borderRadius: 99,
-                  background: 'rgba(43,38,32,0.55)',
-                  color: '#F6F1E7',
+                  background: 'rgba(24,24,27,0.6)',
+                  color: '#ffffff',
                   fontSize: '0.72rem',
                   letterSpacing: '0.04em',
                   pointerEvents: 'none',
@@ -166,12 +169,11 @@ export default function InteractiveRobots() {
               </Box>
             </Box>
 
-            {/* Info panel */}
             <Stack spacing={2.5}>
-              <Typography variant="h3" sx={{ fontSize: '1.7rem', fontWeight: 800, color: '#2B2620' }}>
+              <Typography variant="h3" sx={{ fontSize: '1.9rem', fontWeight: 900, color: '#18181B' }}>
                 {current.title}
               </Typography>
-              <Typography sx={{ color: '#6B6259', lineHeight: 1.8, fontSize: '1rem' }}>
+              <Typography sx={{ color: '#52525B', lineHeight: 1.8, fontSize: '1.02rem' }}>
                 {current.desc}
               </Typography>
               <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
@@ -179,14 +181,14 @@ export default function InteractiveRobots() {
                   <Box
                     key={s}
                     sx={{
-                      px: 1.6,
-                      py: 0.7,
-                      borderRadius: 2,
-                      background: '#ffffff',
-                      border: '1px solid rgba(166,124,82,0.25)',
-                      color: '#876140',
+                      px: 1.8,
+                      py: 0.8,
+                      borderRadius: 99,
+                      background: `${current.accent}12`,
+                      border: `1px solid ${current.accent}33`,
+                      color: current.accent,
                       fontSize: '0.82rem',
-                      fontWeight: 600,
+                      fontWeight: 700,
                     }}
                   >
                     {s}

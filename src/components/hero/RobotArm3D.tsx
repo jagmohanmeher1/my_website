@@ -45,39 +45,41 @@ export default function RobotArm3D({ scrollProgress }: Props) {
 
   const current = useRef<Pose>({ ...POSES[0] });
 
-  // Warm cream-painted links
+  // Vibrant orange links
   const matArm = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#E8DFCE'),
-    metalness: 0.35,
-    roughness: 0.4,
+    color: new THREE.Color('#F97316'),
+    metalness: 0.45,
+    roughness: 0.32,
   }), []);
 
-  // Bronze joints
+  // Dark charcoal joints (bold contrast)
   const matJointBronze = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#A67C52'),
-    metalness: 0.85,
-    roughness: 0.25,
+    color: new THREE.Color('#27272A'),
+    metalness: 0.8,
+    roughness: 0.28,
   }), []);
 
-  // Darker taupe accent (wrist)
+  // Pink accent (wrist)
   const matJointTaupe = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#7C6F5F'),
-    metalness: 0.8,
+    color: new THREE.Color('#EC4899'),
+    metalness: 0.7,
     roughness: 0.3,
   }), []);
 
-  // Dark warm base
+  // Near-black base
   const matBase = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#4A3F33'),
+    color: new THREE.Color('#18181B'),
     metalness: 0.7,
-    roughness: 0.35,
+    roughness: 0.32,
   }), []);
 
-  // Polished bronze gripper
+  // Amber glowing gripper
   const matGripper = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#B5895C'),
-    metalness: 0.9,
-    roughness: 0.2,
+    color: new THREE.Color('#FBBF24'),
+    metalness: 0.55,
+    roughness: 0.25,
+    emissive: new THREE.Color('#F59E0B'),
+    emissiveIntensity: 0.35,
   }), []);
 
   useFrame(({ clock }) => {

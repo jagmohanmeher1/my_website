@@ -18,11 +18,11 @@ function FloatingParticles() {
       pos[i * 3 + 0] = (Math.random() - 0.5) * 14;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
-      // Warm bronze to taupe
+      // Orange to pink
       const t = Math.random();
-      col[i * 3 + 0] = THREE.MathUtils.lerp(0.65, 0.49, t);
-      col[i * 3 + 1] = THREE.MathUtils.lerp(0.49, 0.44, t);
-      col[i * 3 + 2] = THREE.MathUtils.lerp(0.32, 0.37, t);
+      col[i * 3 + 0] = THREE.MathUtils.lerp(0.98, 0.93, t);
+      col[i * 3 + 1] = THREE.MathUtils.lerp(0.45, 0.28, t);
+      col[i * 3 + 2] = THREE.MathUtils.lerp(0.09, 0.60, t);
     }
     return { positions: pos, colors: col };
   }, []);
@@ -35,10 +35,10 @@ function FloatingParticles() {
   }, [positions, colors]);
 
   const mat = useMemo(() => new THREE.PointsMaterial({
-    size: 0.04,
+    size: 0.045,
     vertexColors: true,
     transparent: true,
-    opacity: 0.4,
+    opacity: 0.55,
     sizeAttenuation: true,
   }), []);
 
@@ -79,12 +79,12 @@ export default function RobotScene({ style }: Props) {
       gl={{ alpha: true, antialias: true }}
       style={{ background: 'transparent', ...style }}
     >
-      {/* Warm studio lighting */}
-      <ambientLight intensity={1.05} color="#FFF6E9" />
+      {/* Bright studio lighting */}
+      <ambientLight intensity={1.1} color="#FFFFFF" />
       <directionalLight
         position={[8, 14, 6]}
         intensity={1.5}
-        color="#FFF3E0"
+        color="#FFFFFF"
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={0.1}
@@ -94,10 +94,10 @@ export default function RobotScene({ style }: Props) {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
       />
-      {/* Bronze key accent */}
-      <pointLight position={[4, 6, 5]}  intensity={1.8} color="#C0986B" distance={18} />
-      {/* Taupe fill */}
-      <pointLight position={[-5, 3, -4]} intensity={1.1} color="#9A8C7A" distance={14} />
+      {/* Orange key accent */}
+      <pointLight position={[4, 6, 5]}  intensity={1.9} color="#F97316" distance={18} />
+      {/* Pink fill */}
+      <pointLight position={[-5, 3, -4]} intensity={1.2} color="#EC4899" distance={14} />
       {/* Soft top fill */}
       <pointLight position={[0, 10, 2]}  intensity={0.7} color="#FFFFFF" distance={20} />
 
@@ -106,16 +106,16 @@ export default function RobotScene({ style }: Props) {
         <FloatingParticles />
         <ContactShadows
           position={[0, -2.08, 0]}
-          opacity={0.22}
+          opacity={0.2}
           scale={12}
           blur={3}
           far={5}
-          color="#5E5345"
+          color="#9A3412"
         />
       </Suspense>
 
-      {/* Warm beige floor grid */}
-      <gridHelper args={[22, 22, '#D8CDB5', '#E8E0D0']} position={[0, -2.1, 0]} />
+      {/* Soft floor grid */}
+      <gridHelper args={[22, 22, '#FED7AA', '#FEE8D5']} position={[0, -2.1, 0]} />
     </Canvas>
   );
 }

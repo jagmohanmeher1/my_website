@@ -22,15 +22,15 @@ export default function TopNav() {
             component="a"
             href="#"
             sx={{
-              fontWeight: 900,
-              fontSize: '1.05rem',
-              letterSpacing: '-0.01em',
+              fontWeight: 950,
+              fontSize: '1.1rem',
+              letterSpacing: '-0.02em',
               textDecoration: 'none',
-              color: '#2B2620',
+              color: '#18181B',
             }}
           >
             Jagmohan{' '}
-            <Box component="span" sx={{ color: '#A67C52' }}>Meher</Box>
+            <Box component="span" className="gradientText">Meher</Box>
           </Typography>
 
           {/* Nav links */}
@@ -44,12 +44,12 @@ export default function TopNav() {
                   textTransform: 'none',
                   px: 1.5,
                   fontSize: '0.88rem',
-                  color: '#6B6259',
-                  fontWeight: 500,
-                  borderRadius: 2,
+                  color: '#52525B',
+                  fontWeight: 600,
+                  borderRadius: 99,
                   '&:hover': {
-                    color: '#A67C52',
-                    backgroundColor: 'rgba(166,124,82,0.07)',
+                    color: '#F97316',
+                    backgroundColor: 'rgba(249,115,22,0.08)',
                   },
                 }}
               >
