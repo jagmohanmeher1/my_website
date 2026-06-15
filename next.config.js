@@ -11,10 +11,10 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  // Avoid CI failures when ESLint is not fully configured locally
   eslint: {
     ignoreDuringBuilds: true
-  }
+  },
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei']
 };
 
 module.exports = nextConfig;
