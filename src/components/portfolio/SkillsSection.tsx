@@ -6,8 +6,8 @@ import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 const SKILL_GROUPS = [
   {
     category: 'Robotics & Hardware',
-    accent: '#2563eb',
-    bg: 'rgba(37,99,235,0.04)',
+    accent: '#A67C52',
+    bg: 'rgba(166,124,82,0.05)',
     skills: [
       { name: 'Robotic Arm Design',   level: 95 },
       { name: 'Kinematics & Control', level: 90 },
@@ -18,8 +18,8 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Software & Algorithms',
-    accent: '#7c3aed',
-    bg: 'rgba(124,58,237,0.04)',
+    accent: '#7C6F5F',
+    bg: 'rgba(124,111,95,0.05)',
     skills: [
       { name: 'Python',             level: 92 },
       { name: 'C / C++',            level: 85 },
@@ -30,8 +30,8 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Teaching & Communication',
-    accent: '#0891b2',
-    bg: 'rgba(8,145,178,0.04)',
+    accent: '#876140',
+    bg: 'rgba(135,97,64,0.05)',
     skills: [
       { name: 'Technical Training', level: 95 },
       { name: 'Workshop Design',    level: 90 },
@@ -45,27 +45,20 @@ function SkillBar({ name, level, accent, animate }: { name: string; level: numbe
   return (
     <Stack spacing={0.6}>
       <Stack direction="row" justifyContent="space-between" alignItems="baseline">
-        <Typography sx={{ color: '#374151', fontSize: '0.87rem', fontWeight: 500 }}>
+        <Typography sx={{ color: '#4A453E', fontSize: '0.87rem', fontWeight: 500 }}>
           {name}
         </Typography>
         <Typography sx={{ color: accent, fontSize: '0.8rem', fontWeight: 700 }}>
           {level}%
         </Typography>
       </Stack>
-      <Box
-        sx={{
-          height: 5,
-          borderRadius: 3,
-          background: 'rgba(0,0,0,0.07)',
-          overflow: 'hidden',
-        }}
-      >
+      <Box sx={{ height: 5, borderRadius: 3, background: 'rgba(43,38,32,0.08)', overflow: 'hidden' }}>
         <Box
           className="skillBarFill"
           sx={{
             height: '100%',
             borderRadius: 3,
-            background: `linear-gradient(90deg, ${accent}aa, ${accent})`,
+            background: `linear-gradient(90deg, ${accent}bb, ${accent})`,
             width: animate ? `${level}%` : '0%',
           }}
         />
@@ -88,19 +81,13 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <Box
-      component="section"
-      id="skills"
-      className="spSection"
-      ref={ref}
-      sx={{ background: '#f9fafb' }}
-    >
+    <Box component="section" id="skills" className="spSection" ref={ref} sx={{ background: '#ffffff' }}>
       <Container maxWidth="lg">
         <Stack spacing={6}>
           <Box>
             <Typography
               sx={{
-                color: '#7c3aed',
+                color: '#7C6F5F',
                 fontWeight: 700,
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
@@ -110,16 +97,9 @@ export default function SkillsSection() {
             >
               Expertise
             </Typography>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: '2.2rem', md: '2.8rem' },
-                fontWeight: 900,
-                color: '#111827',
-              }}
-            >
+            <Typography variant="h2" sx={{ fontSize: { xs: '2.2rem', md: '2.8rem' }, fontWeight: 900, color: '#2B2620' }}>
               Skills &{' '}
-              <Box component="span" sx={{ color: '#7c3aed' }}>Tools</Box>
+              <Box component="span" sx={{ color: '#7C6F5F' }}>Tools</Box>
             </Typography>
           </Box>
 
@@ -132,11 +112,11 @@ export default function SkillsSection() {
                     p: 3,
                     height: '100%',
                     background: group.bg,
-                    border: `1px solid ${group.accent}18`,
+                    border: `1px solid ${group.accent}1f`,
                     transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
                     '&:hover': {
-                      boxShadow: `0 8px 32px ${group.accent}15`,
-                      borderColor: `${group.accent}35`,
+                      boxShadow: `0 10px 34px ${group.accent}18`,
+                      borderColor: `${group.accent}3a`,
                     },
                   }}
                 >
@@ -148,7 +128,7 @@ export default function SkillsSection() {
                         color: group.accent,
                         letterSpacing: '0.02em',
                         pb: 1.5,
-                        borderBottom: `2px solid ${group.accent}20`,
+                        borderBottom: `2px solid ${group.accent}24`,
                       }}
                     >
                       {group.category}

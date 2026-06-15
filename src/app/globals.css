@@ -15,25 +15,19 @@ html {
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: #ffffff;
-  color: #111827;
+  color: #2b2620;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Scroll dot animation */
-@keyframes scrollDot {
-  0%, 100% { transform: translateX(-50%) translateY(0);    opacity: 1; }
-  80%       { transform: translateX(-50%) translateY(10px); opacity: 0; }
-}
-
 /* Fixed navbar */
 .topNavBackdrop {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 1px solid rgba(43, 38, 32, 0.08);
 }
 
 /* Section helpers */
@@ -48,32 +42,13 @@ body {
 /* Card */
 .spGlass {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.04);
-}
-
-/* Gradient border wrapper */
-.spGradientBorder {
-  position: relative;
-}
-
-.spGradientBorder::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.45), rgba(124, 58, 237, 0.38));
-  z-index: 0;
-  pointer-events: none;
-}
-
-.spGradientBorder > * {
-  position: relative;
-  z-index: 1;
+  border: 1px solid rgba(43, 38, 32, 0.09);
+  box-shadow: 0 1px 3px rgba(43, 38, 32, 0.05), 0 10px 28px rgba(43, 38, 32, 0.05);
 }
 
 /* Anchor scroll offset */
 #about,
+#robots,
 #skills,
 #projects,
 #contact {
@@ -92,6 +67,14 @@ body {
 
 .projectCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.12) !important;
-  border-color: rgba(37, 99, 235, 0.3) !important;
+  box-shadow: 0 14px 42px rgba(166, 124, 82, 0.16) !important;
+  border-color: rgba(166, 124, 82, 0.32) !important;
+}
+
+/* Grab cursor hint for interactive 3D canvases */
+.robotCanvasInteractive {
+  cursor: grab;
+}
+.robotCanvasInteractive:active {
+  cursor: grabbing;
 }

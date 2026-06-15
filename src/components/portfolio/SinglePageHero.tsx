@@ -11,28 +11,28 @@ const STAGES = [
     eyebrow: 'Robotics Engineer & Technical Trainer',
     title: 'Jagmohan\nMeher',
     desc: 'Building intelligent machines that interact with the physical world. From robotic arms to embedded control — turning real constraints into reliable motion.',
-    accent: '#2563eb',
+    accent: '#A67C52',
     showMainCtas: true,
   },
   {
     eyebrow: '6+ DOF Precision Arms',
     title: 'Designed\nto Move',
     desc: 'Multi-degree-of-freedom robotic arms for industrial automation and research. Custom kinematics, smooth trajectories, repeatable motion.',
-    accent: '#7c3aed',
+    accent: '#876140',
     showMainCtas: false,
   },
   {
     eyebrow: 'Motion Planning & Control',
     title: 'From IK\nto Trajectory',
     desc: 'Inverse kinematics, trajectory optimization, and real-time control loops that give robots the precision they need in the real world.',
-    accent: '#2563eb',
+    accent: '#A67C52',
     showMainCtas: false,
   },
   {
     eyebrow: 'Open for Collaboration',
     title: "Let's Build\nTogether",
     desc: "Research, teaching, and engineering projects welcome. If it moves, senses, or learns — let's talk.",
-    accent: '#7c3aed',
+    accent: '#7C6F5F',
     showMainCtas: false,
     showContactCta: true,
   },
@@ -83,10 +83,10 @@ export default function SinglePageHero() {
           alignItems: 'center',
           overflow: 'hidden',
           pt: { xs: 10, md: 0 },
-          background: '#ffffff',
+          background: 'linear-gradient(180deg, #ffffff 0%, #FBF8F2 100%)',
         }}
       >
-        {/* Subtle background accent behind the arm area */}
+        {/* Subtle warm accent behind the arm */}
         <Box
           aria-hidden
           sx={{
@@ -95,7 +95,7 @@ export default function SinglePageHero() {
             pointerEvents: 'none',
             zIndex: 0,
             background:
-              'radial-gradient(800px 700px at 80% 45%, rgba(37,99,235,0.05) 0%, transparent 65%)',
+              'radial-gradient(820px 720px at 78% 45%, rgba(166,124,82,0.08) 0%, transparent 64%)',
           }}
         />
 
@@ -121,7 +121,6 @@ export default function SinglePageHero() {
                 transition: 'opacity 0.3s ease, transform 0.3s ease',
               }}
             >
-              {/* Eyebrow */}
               <Typography
                 sx={{
                   color: stage.accent,
@@ -135,7 +134,6 @@ export default function SinglePageHero() {
                 {stage.eyebrow}
               </Typography>
 
-              {/* Headline */}
               <Typography
                 component="h1"
                 sx={{
@@ -143,17 +141,16 @@ export default function SinglePageHero() {
                   fontSize: { xs: '2.8rem', sm: '3.4rem', md: '4.2rem' },
                   lineHeight: 1.0,
                   letterSpacing: '-0.03em',
-                  color: '#111827',
+                  color: '#2B2620',
                   whiteSpace: 'pre-line',
                 }}
               >
                 {stage.title}
               </Typography>
 
-              {/* Description */}
               <Typography
                 sx={{
-                  color: '#6b7280',
+                  color: '#6B6259',
                   fontSize: { xs: '1rem', md: '1.08rem' },
                   lineHeight: 1.78,
                   maxWidth: '42ch',
@@ -162,24 +159,29 @@ export default function SinglePageHero() {
                 {stage.desc}
               </Typography>
 
-              {/* Stage 0 CTAs */}
               {stage.showMainCtas && (
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ pt: 0.5 }}>
                   <Button
                     component="a"
-                    href="#about"
+                    href="#robots"
                     variant="contained"
                     color="primary"
-                    sx={{ px: 3.2, py: 1.3, borderRadius: 2, fontWeight: 700 }}
+                    sx={{ px: 3.2, py: 1.3, borderRadius: 3, fontWeight: 700 }}
                   >
-                    About Me
+                    Explore Robots
                   </Button>
                   <Button
                     component="a"
                     href="#projects"
                     variant="outlined"
-                    color="primary"
-                    sx={{ px: 3.2, py: 1.3, borderRadius: 2 }}
+                    sx={{
+                      px: 3.2,
+                      py: 1.3,
+                      borderRadius: 3,
+                      borderColor: 'rgba(43,38,32,0.15)',
+                      color: '#6B6259',
+                      '&:hover': { borderColor: '#A67C52', color: '#A67C52', backgroundColor: 'transparent' },
+                    }}
                   >
                     Projects
                   </Button>
@@ -187,22 +189,21 @@ export default function SinglePageHero() {
                     component="a"
                     href="#contact"
                     variant="text"
-                    sx={{ px: 2, py: 1.3, color: '#6b7280', '&:hover': { color: '#2563eb', backgroundColor: 'transparent' } }}
+                    sx={{ px: 2, py: 1.3, color: '#8A8178', '&:hover': { color: '#A67C52', backgroundColor: 'transparent' } }}
                   >
                     Contact →
                   </Button>
                 </Stack>
               )}
 
-              {/* Stage 3 CTA */}
               {stage.showContactCta && (
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ pt: 0.5 }}>
                   <Button
                     component="a"
                     href="#contact"
                     variant="contained"
-                    color="secondary"
-                    sx={{ px: 3.2, py: 1.3, borderRadius: 2, fontWeight: 700 }}
+                    color="primary"
+                    sx={{ px: 3.2, py: 1.3, borderRadius: 3, fontWeight: 700 }}
                   >
                     Get in Touch
                   </Button>
@@ -213,10 +214,10 @@ export default function SinglePageHero() {
                     sx={{
                       px: 3.2,
                       py: 1.3,
-                      borderRadius: 2,
-                      borderColor: 'rgba(0,0,0,0.15)',
-                      color: '#374151',
-                      '&:hover': { borderColor: '#7c3aed', color: '#7c3aed', backgroundColor: 'transparent' },
+                      borderRadius: 3,
+                      borderColor: 'rgba(43,38,32,0.15)',
+                      color: '#6B6259',
+                      '&:hover': { borderColor: '#7C6F5F', color: '#7C6F5F', backgroundColor: 'transparent' },
                     }}
                   >
                     View Projects
@@ -234,14 +235,14 @@ export default function SinglePageHero() {
                         width: i === stageIdx ? 22 : 6,
                         height: 6,
                         borderRadius: 3,
-                        background: i === stageIdx ? stage.accent : 'rgba(0,0,0,0.14)',
+                        background: i === stageIdx ? stage.accent : 'rgba(43,38,32,0.14)',
                         transition: 'all 0.4s ease',
                       }}
                     />
                   ))}
                 </Stack>
                 {stageIdx === 0 && (
-                  <Typography sx={{ color: '#9ca3af', fontSize: '0.74rem', letterSpacing: '0.06em' }}>
+                  <Typography sx={{ color: '#A8A096', fontSize: '0.74rem', letterSpacing: '0.06em' }}>
                     scroll to explore
                   </Typography>
                 )}

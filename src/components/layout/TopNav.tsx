@@ -2,6 +2,7 @@ import { Box, Button, Container, Stack, Typography } from '@mui/material';
 
 const navItems = [
   { label: 'About',    href: '#about' },
+  { label: 'Robots',   href: '#robots' },
   { label: 'Skills',   href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact',  href: '#contact' },
@@ -25,11 +26,11 @@ export default function TopNav() {
               fontSize: '1.05rem',
               letterSpacing: '-0.01em',
               textDecoration: 'none',
-              color: '#111827',
+              color: '#2B2620',
             }}
           >
             Jagmohan{' '}
-            <Box component="span" sx={{ color: '#2563eb' }}>Meher</Box>
+            <Box component="span" sx={{ color: '#A67C52' }}>Meher</Box>
           </Typography>
 
           {/* Nav links */}
@@ -43,12 +44,12 @@ export default function TopNav() {
                   textTransform: 'none',
                   px: 1.5,
                   fontSize: '0.88rem',
-                  color: '#4b5563',
+                  color: '#6B6259',
                   fontWeight: 500,
                   borderRadius: 2,
                   '&:hover': {
-                    color: '#2563eb',
-                    backgroundColor: 'rgba(37,99,235,0.05)',
+                    color: '#A67C52',
+                    backgroundColor: 'rgba(166,124,82,0.07)',
                   },
                 }}
               >

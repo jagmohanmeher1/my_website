@@ -45,45 +45,39 @@ export default function RobotArm3D({ scrollProgress }: Props) {
 
   const current = useRef<Pose>({ ...POSES[0] });
 
-  // Professional dark steel arm
+  // Warm cream-painted links
   const matArm = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#1e293b'),
+    color: new THREE.Color('#E8DFCE'),
+    metalness: 0.35,
+    roughness: 0.4,
+  }), []);
+
+  // Bronze joints
+  const matJointBronze = useMemo(() => new THREE.MeshStandardMaterial({
+    color: new THREE.Color('#A67C52'),
     metalness: 0.85,
-    roughness: 0.18,
+    roughness: 0.25,
   }), []);
 
-  // Engineering blue joints
-  const matJointBlue = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#2563eb'),
-    metalness: 0.55,
-    roughness: 0.2,
-    emissive: new THREE.Color('#2563eb'),
-    emissiveIntensity: 0.15,
+  // Darker taupe accent (wrist)
+  const matJointTaupe = useMemo(() => new THREE.MeshStandardMaterial({
+    color: new THREE.Color('#7C6F5F'),
+    metalness: 0.8,
+    roughness: 0.3,
   }), []);
 
-  // Accent purple wrist joint
-  const matJointPurple = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#7c3aed'),
-    metalness: 0.55,
-    roughness: 0.22,
-    emissive: new THREE.Color('#7c3aed'),
-    emissiveIntensity: 0.12,
-  }), []);
-
-  // Dark base
+  // Dark warm base
   const matBase = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#0f172a'),
-    metalness: 0.92,
-    roughness: 0.1,
+    color: new THREE.Color('#4A3F33'),
+    metalness: 0.7,
+    roughness: 0.35,
   }), []);
 
-  // Gripper fingers — slightly lighter steel
+  // Polished bronze gripper
   const matGripper = useMemo(() => new THREE.MeshStandardMaterial({
-    color: new THREE.Color('#2563eb'),
-    metalness: 0.7,
-    roughness: 0.22,
-    emissive: new THREE.Color('#2563eb'),
-    emissiveIntensity: 0.08,
+    color: new THREE.Color('#B5895C'),
+    metalness: 0.9,
+    roughness: 0.2,
   }), []);
 
   useFrame(({ clock }) => {
@@ -126,8 +120,8 @@ export default function RobotArm3D({ scrollProgress }: Props) {
         <cylinderGeometry args={[1.6, 1.9, 0.35, 32]} />
       </mesh>
 
-      {/* Blue accent ring */}
-      <mesh material={matJointBlue} position={[0, 0.2, 0]} rotation={[Math.PI / 2, 0, 0]}>
+      {/* Bronze accent ring */}
+      <mesh material={matJointBronze} position={[0, 0.2, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.25, 0.055, 16, 64]} />
       </mesh>
 
@@ -139,12 +133,12 @@ export default function RobotArm3D({ scrollProgress }: Props) {
         </mesh>
 
         {/* Turret top ring */}
-        <mesh material={matJointBlue} position={[0, 1.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <mesh material={matJointBronze} position={[0, 1.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.44, 0.038, 8, 32]} />
         </mesh>
 
         {/* Shoulder joint */}
-        <mesh material={matJointBlue} castShadow position={[0, 1.15, 0]}>
+        <mesh material={matJointBronze} castShadow position={[0, 1.15, 0]}>
           <sphereGeometry args={[0.52, 32, 32]} />
         </mesh>
 
@@ -166,7 +160,7 @@ export default function RobotArm3D({ scrollProgress }: Props) {
           </mesh>
 
           {/* Elbow joint */}
-          <mesh material={matJointBlue} castShadow position={[0, 3.08, 0]}>
+          <mesh material={matJointBronze} castShadow position={[0, 3.08, 0]}>
             <sphereGeometry args={[0.42, 32, 32]} />
           </mesh>
 
@@ -187,8 +181,8 @@ export default function RobotArm3D({ scrollProgress }: Props) {
               <cylinderGeometry args={[0.36, 0.27, 0.18, 16]} />
             </mesh>
 
-            {/* Wrist joint (purple accent) */}
-            <mesh material={matJointPurple} castShadow position={[0, 2.42, 0]}>
+            {/* Wrist joint (taupe accent) */}
+            <mesh material={matJointTaupe} castShadow position={[0, 2.42, 0]}>
               <sphereGeometry args={[0.3, 32, 32]} />
             </mesh>
 
@@ -209,7 +203,7 @@ export default function RobotArm3D({ scrollProgress }: Props) {
                 <mesh material={matGripper} castShadow position={[0, 0.38, 0]}>
                   <boxGeometry args={[0.16, 0.55, 0.18]} />
                 </mesh>
-                <mesh material={matJointBlue} position={[0, 0.68, 0]}>
+                <mesh material={matJointBronze} position={[0, 0.68, 0]}>
                   <sphereGeometry args={[0.065, 12, 12]} />
                 </mesh>
               </group>
@@ -219,7 +213,7 @@ export default function RobotArm3D({ scrollProgress }: Props) {
                 <mesh material={matGripper} castShadow position={[0, 0.38, 0]}>
                   <boxGeometry args={[0.16, 0.55, 0.18]} />
                 </mesh>
-                <mesh material={matJointBlue} position={[0, 0.68, 0]}>
+                <mesh material={matJointBronze} position={[0, 0.68, 0]}>
                   <sphereGeometry args={[0.065, 12, 12]} />
                 </mesh>
               </group>
